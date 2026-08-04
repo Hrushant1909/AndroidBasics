@@ -1,5 +1,6 @@
 package com.hrushant.basicsofandroid
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -22,11 +23,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val btn_toast = findViewById<Button>(R.id.btn_toast)
-        btn_toast.setOnClickListener {
-            Toast.makeText(this,
-                "Press again to exit!",
-                Toast.LENGTH_LONG).show()
+        val btn_next = findViewById<Button>(R.id.btn_next_activity)
+        btn_next.setOnClickListener {
+            Intent(this, SecondActivity::class.java).also {
+                startActivity(it)
+            }
         }
 
     }

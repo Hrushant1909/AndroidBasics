@@ -9,10 +9,10 @@
     android:gravity="center">
 
     <Button
-        android:id="@+id/btn_toast"
+        android:id="@+id/btn_next_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Show Toast"
+        android:text="Next Activity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
