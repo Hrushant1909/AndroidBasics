@@ -12,11 +12,9 @@ class SecondActivity : AppCompatActivity()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
         val tv_person = findViewById<TextView>(R.id.tv_person)
-        val name = intent.getStringExtra("EXTRA_NAME")
-        val age = intent.getIntExtra("EXTRA_AGE", 0)
-        val country = intent.getStringExtra("EXTRA_COUNTRY")
-        val str = "My name is $name of age $age and i live in $country"
-        tv_person.text = str.toString()
+        val person = intent.getSerializableExtra("EXTRA_PERSON") as Person
+
+        tv_person.text = person.toString()
 
     }
 }
