@@ -8,99 +8,15 @@
     android:orientation="vertical"
     android:gravity="center">
 
-    <TextView
-        android:id="@+id/textView"
+    <Button
+        android:id="@+id/btn_toast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="What config you want in your Burger ?"
-        android:textSize="26sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.589"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="65dp" />
-
-    <RadioGroup
-        android:id="@+id/rg_meat_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-
+        android:text="Show Toast"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
-
-
-        <RadioButton
-            android:id="@+id/rb_chicken"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Chicken"
-            tools:layout_editor_absoluteX="83dp"
-            android:checked="true"
-            tools:layout_editor_absoluteY="211dp" />
-
-        <RadioButton
-            android:id="@+id/rb_pork"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pork"
-            tools:layout_editor_absoluteX="255dp"
-            tools:layout_editor_absoluteY="168dp" />
-
-        <RadioButton
-            android:id="@+id/rb_mutton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Mutton"
-            tools:layout_editor_absoluteX="223dp"
-            tools:layout_editor_absoluteY="232dp" />
-
-    </RadioGroup>
-
-
-    <CheckBox
-        android:id="@+id/cb_salad"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Salad"
-        app:layout_constraintTop_toBottomOf="@+id/rg_meat_type"
-        tools:layout_editor_absoluteX="124dp" />
-
-    <CheckBox
-        android:id="@+id/cb_cheese"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cheese"
-        app:layout_constraintStart_toStartOf="@+id/cb_sauce"
-        app:layout_constraintTop_toBottomOf="@+id/cb_sauce" />
-
-    <CheckBox
-        android:id="@+id/cb_sauce"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sauce"
-        app:layout_constraintStart_toStartOf="@+id/cb_salad"
-        app:layout_constraintTop_toBottomOf="@+id/cb_salad" />
-
-    <Button
-        android:id="@+id/btn_order"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Order"
-        app:layout_constraintEnd_toEndOf="@+id/rg_meat_type"
-        app:layout_constraintStart_toStartOf="@+id/rg_meat_type"
-        app:layout_constraintTop_toBottomOf="@+id/cb_cheese" />
-
-    <TextView
-        android:id="@+id/tv_order_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Your Order : "
-        android:textSize="26sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/btn_order" />
-
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
 </androidx.constraintlayout.widget.ConstraintLayout>
