@@ -23,9 +23,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val btn_next = findViewById<Button>(R.id.btn_next_activity)
-        btn_next.setOnClickListener {
+        val btn_apply = findViewById<Button>(R.id.btn_apply)
+        val et_name = findViewById<EditText>(R.id.et_name)
+        val et_age = findViewById<EditText>(R.id.et_age)
+        val et_country = findViewById<EditText>(R.id.et_country)
+        btn_apply.setOnClickListener {
+            val name = et_name.text.toString()
+            val age = et_age.text.toString().toInt()
+            val country = et_country.text.toString()
+
             Intent(this, SecondActivity::class.java).also {
+                it.putExtra("EXTRA_NAME", name)
+                it.putExtra("EXTRA_AGE", age)
+                it.putExtra("EXTRA_COUNTRY", country)
+
                 startActivity(it)
             }
         }

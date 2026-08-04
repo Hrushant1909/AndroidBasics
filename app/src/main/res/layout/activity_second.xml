@@ -3,29 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:padding="16dp"
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/tv_second_activity"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_person"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="This is the second activity"
-        android:textSize="20sp"
+        android:text="Second Activity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:textSize="30sp"
         app:layout_constraintVertical_bias="0.5" />
-
-    <Button
-        android:id="@+id/btn_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Go to previous Activity"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_second_activity" />
 </androidx.constraintlayout.widget.ConstraintLayout>
