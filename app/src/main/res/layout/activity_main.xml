@@ -7,27 +7,4 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="24dp"
-
-    android:gravity="center">
-
-    <ImageView
-        android:id="@+id/iv_image"
-        android:layout_width="300dp"
-        android:layout_height="400dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btn_choose_photo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Choose Photo"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_image" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    android:gravity="center"/>

@@ -6,6 +6,8 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
@@ -28,25 +30,29 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val btn_choose_photo = findViewById<Button>(R.id.btn_choose_photo)
-
-        btn_choose_photo.setOnClickListener {
-            Intent(Intent.ACTION_GET_CONTENT).also {
-                it.type = "image/*"
-                startActivityForResult(it, 0)
-
-            }
-        }
-
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.appbar_menu, menu)
+        return true
+    }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK && requestCode == 0){
-            val uri = data?.data
-            val iv_image = findViewById<ImageView>(R.id.iv_image)
-            iv_image.setImageURI(uri)
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.mi_settings -> {
+                Toast.makeText(this, "You clicked on settings...", Toast.LENGTH_SHORT).show()
+            }
+            R.id.mi_peoples -> {
+                Toast.makeText(this, "You clicked on peoples...", Toast.LENGTH_SHORT).show()
+            }
+            R.id.mi_favourite -> {
+                Toast.makeText(this, "You clicked on favourite...", Toast.LENGTH_SHORT).show()
+            }
+            R.id.mi_add_contact -> {
+                Toast.makeText(this, "You clicked on add contact...", Toast.LENGTH_SHORT).show()
+            }
+
         }
+        return true
     }
 }
