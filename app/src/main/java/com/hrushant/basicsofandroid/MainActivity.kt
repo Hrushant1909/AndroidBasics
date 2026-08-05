@@ -1,6 +1,7 @@
 package com.hrushant.basicsofandroid
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -27,51 +28,25 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val btn_request = findViewById<Button>(R.id.btn_request)
-        btn_request.setOnClickListener {
-            requestPermission()
-        }
+        val btn_choose_photo = findViewById<Button>(R.id.btn_choose_photo)
 
-    }
+        btn_choose_photo.setOnClickListener {
+            Intent(Intent.ACTION_GET_CONTENT).also {
+                it.type = "image/*"
+                startActivityForResult(it, 0)
 
-    private fun hasWritePermission() =
-        ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-
-    private fun hasInternetPermission() =
-        ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
-
-    private fun hasBackgroundLocationPermission() =
-        ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED
-
-    private fun requestPermission(){
-        var permissionToRequest = mutableListOf<String>()
-        if(!hasWritePermission()){
-            permissionToRequest.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        }
-        if(!hasInternetPermission()){
-            permissionToRequest.add(Manifest.permission.ACCESS_COARSE_LOCATION)
-        }
-        if(!hasBackgroundLocationPermission()){
-            permissionToRequest.add(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
-        }
-        if (permissionToRequest.isNotEmpty()){
-            ActivityCompat.requestPermissions(this, permissionToRequest.toTypedArray(), 0)
-        }
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String?>,
-        grantResults: IntArray,
-        deviceId: Int
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults, deviceId)
-        if(requestCode == 0 && grantResults.isNotEmpty()){
-            for(i in grantResults.indices){
-                if(grantResults[i] == PackageManager.PERMISSION_GRANTED){
-                    Log.d("Permissions Request", "${permissions[i]} granted.")
-                }
             }
+        }
+
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == 0){
+            val uri = data?.data
+            val iv_image = findViewById<ImageView>(R.id.iv_image)
+            iv_image.setImageURI(uri)
         }
     }
 }
