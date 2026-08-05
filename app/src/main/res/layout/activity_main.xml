@@ -10,34 +10,16 @@
     android:gravity="center">
 
 
-    <Button
-        android:id="@+id/btn_db1"
+    <Spinner
+        android:id="@+id/sp_months"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dialog box 1"
+        android:entries="@array/months"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btn_db2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dialog box 2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_db1" />
-
-    <Button
-        android:id="@+id/btn_db3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dialog box 3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_db2" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
