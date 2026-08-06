@@ -29,6 +29,8 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.security.Permission
 import java.util.*
@@ -39,31 +41,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val firstFragment = FirstFragment()
-        val secondFragment = SecondFragment()
-        val thirdFragment = ThirdFragment()
-        setCurrentFragment(firstFragment)
 
-        val bottomNavView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-        bottomNavView.setOnNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.mi_home -> setCurrentFragment(firstFragment)
-                R.id.mi_messages -> setCurrentFragment(secondFragment)
-                R.id.mi_profile -> setCurrentFragment(thirdFragment)
-            }
-            true
-        }
-        bottomNavView.getOrCreateBadge(R.id.mi_messages).apply {
-            number = 10
-            isVisible = true
-        }
+        val images = listOf(
+            R.drawable.image1,
+            R.drawable.image2,
+            R.drawable.image3,
+            R.drawable.image4,
+            R.drawable.image5,
+            R.drawable.image6
+        )
+
+        val adapter = ViewPagerAdapter(images)
+        val viewPager = findViewById<ViewPager2>(R.id.viewPager)
+        viewPager.adapter = adapter
+        viewPager.orientation = ViewPager2.ORIENTATION_VERTICAL
 
     }
-    private fun setCurrentFragment(fragment : Fragment) =
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fl_fragment, fragment)
-            commit()
-        }
-
-
 }
