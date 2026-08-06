@@ -26,8 +26,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.security.Permission
 import java.util.*
 import kotlin.time.Duration
@@ -39,26 +41,29 @@ class MainActivity : AppCompatActivity() {
 
         val firstFragment = FirstFragment()
         val secondFragment = SecondFragment()
+        val thirdFragment = ThirdFragment()
+        setCurrentFragment(firstFragment)
 
+        val bottomNavView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        bottomNavView.setOnNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.mi_home -> setCurrentFragment(firstFragment)
+                R.id.mi_messages -> setCurrentFragment(secondFragment)
+                R.id.mi_profile -> setCurrentFragment(thirdFragment)
+            }
+            true
+        }
+        bottomNavView.getOrCreateBadge(R.id.mi_messages).apply {
+            number = 10
+            isVisible = true
+        }
+
+    }
+    private fun setCurrentFragment(fragment : Fragment) =
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fl_fragment, firstFragment)
+            replace(R.id.fl_fragment, fragment)
             commit()
         }
 
-        val btn_frg1 = findViewById<Button>(R.id.btn_fragment1)
-        btn_frg1.setOnClickListener {
-            supportFragmentManager.beginTransaction().apply {
-                replace(R.id.fl_fragment, firstFragment)
-                commit()
-            }
-        }
 
-        val btn_frg2 = findViewById<Button>(R.id.btn_fragment2)
-        btn_frg2.setOnClickListener {
-            supportFragmentManager.beginTransaction().apply {
-                replace(R.id.fl_fragment, secondFragment)
-                commit()
-            }
-        }
-    }
 }
