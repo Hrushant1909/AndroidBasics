@@ -36,24 +36,29 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        var todoList = mutableListOf<Todo>(
-            Todo("Android fundamentals", false),
-            Todo("DSA 2 questions", false)
-        )
-        val adapter = TodoAdapter(todoList)
-        val rv_todos = findViewById<RecyclerView>(R.id.rv_todo)
-        rv_todos.adapter = adapter
-        rv_todos.layoutManager = LinearLayoutManager(this)
 
-        val btn_add = findViewById<Button>(R.id.btn_add)
-        btn_add.setOnClickListener {
-            val et_todo = findViewById<EditText>(R.id.et_todo)
+        val firstFragment = FirstFragment()
+        val secondFragment = SecondFragment()
 
-            val title = et_todo.text.toString()
-            val todo = Todo(title, false)
-            todoList.add(todo)
-            adapter.notifyItemInserted(todoList.size - 1)
-            et_todo.setText("")
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.fl_fragment, firstFragment)
+            commit()
+        }
+
+        val btn_frg1 = findViewById<Button>(R.id.btn_fragment1)
+        btn_frg1.setOnClickListener {
+            supportFragmentManager.beginTransaction().apply {
+                replace(R.id.fl_fragment, firstFragment)
+                commit()
+            }
+        }
+
+        val btn_frg2 = findViewById<Button>(R.id.btn_fragment2)
+        btn_frg2.setOnClickListener {
+            supportFragmentManager.beginTransaction().apply {
+                replace(R.id.fl_fragment, secondFragment)
+                commit()
+            }
         }
     }
 }
