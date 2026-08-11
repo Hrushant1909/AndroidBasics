@@ -21,40 +21,58 @@ import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationView
+import com.hrushant.basicsofandroid.R.id.mi_item1
 import java.security.Permission
 import java.util.*
 import kotlin.time.Duration
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var toggle: ActionBarDrawerToggle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
 
-        val images = listOf(
-            R.drawable.image1,
-            R.drawable.image2,
-            R.drawable.image3,
-            R.drawable.image4,
-            R.drawable.image5,
-            R.drawable.image6
-        )
+        toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
 
-        val adapter = ViewPagerAdapter(images)
-        val viewPager = findViewById<ViewPager2>(R.id.viewPager)
-        viewPager.adapter = adapter
-        viewPager.orientation = ViewPager2.ORIENTATION_VERTICAL
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        val navView = findViewById<NavigationView>(R.id.navView)
+        navView.setNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.mi_item1 -> Toast.makeText(applicationContext, "Clicked item 1", Toast.LENGTH_SHORT).show()
+                R.id.mi_item2 -> Toast.makeText(applicationContext, "Clicked item 2", Toast.LENGTH_SHORT).show()
+                R.id.mi_item3 -> Toast.makeText(applicationContext, "Clicked item 3", Toast.LENGTH_SHORT).show()
+            }
+            true
+        }
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        if(toggle.onOptionsItemSelected(item)){
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 }
