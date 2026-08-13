@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.nfc.Tag
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -36,43 +37,29 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.hrushant.basicsofandroid.R.id.mi_item1
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.security.Permission
 import java.util.*
+import kotlin.jvm.Throws
 import kotlin.time.Duration
 
 class MainActivity : AppCompatActivity() {
+
+    val TAG = "MainActivity"
 
     lateinit var toggle: ActionBarDrawerToggle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
-
-        toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
-        drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
-
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        val navView = findViewById<NavigationView>(R.id.navView)
-        navView.setNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.mi_item1 -> Toast.makeText(applicationContext, "Clicked item 1", Toast.LENGTH_SHORT).show()
-                R.id.mi_item2 -> Toast.makeText(applicationContext, "Clicked item 2", Toast.LENGTH_SHORT).show()
-                R.id.mi_item3 -> Toast.makeText(applicationContext, "Clicked item 3", Toast.LENGTH_SHORT).show()
-            }
-            true
+        GlobalScope.launch {
+            delay(3000L)
+            Log.d(TAG, "This is a coroutine created inside the global thread...${Thread.currentThread().name}")
         }
+        Log.d(TAG, "Hello from the thread...${Thread.currentThread().name}")
 
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        if(toggle.onOptionsItemSelected(item)){
-            return true
-        }
-
-        return super.onOptionsItemSelected(item)
     }
 }
